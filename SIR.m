@@ -2,7 +2,8 @@ function [t, x] = SIR(x0, params, T)
 %SIR standard SIR model simulation
 %   params = [beta, gamma]
     param.beta = params(1);
-    param.gamma = params(2);
+    % TODO: make this a global variable or take in argument
+    param.gamma = 0.2;
     [t, x] = ode45(@(t, x) SIR_rhs(t, x, param), T, x0);
 end
 
