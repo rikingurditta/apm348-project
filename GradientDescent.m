@@ -9,7 +9,12 @@ function x = GradientDescent(f, x0, step_size, iterations)
         g = FiniteDiffGradient(f, x);
         display(['g ', num2str(g')])
         fprintf('\n');
-        x = x - step_size * g;
+        % line search to make sure we don't go negative
+        alpha = step_size;
+        while (sum(x - alpha * g < zeros(size(x0))))
+            alpha = alpha / 2;
+        end
+        x = x - alpha * g;
     end
 end
 
