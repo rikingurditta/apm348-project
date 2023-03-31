@@ -1,5 +1,6 @@
 function L = SIRSquareError(x0, beta, gamma, T, t_data, x_data)
-%SIRSQUAREERROR squared error between simulated SIR model and given data
+%SIRSQUAREERROR
+%   squared error between simulated SIR model and given data
     % initialize error (L for Loss)
     L = 0;
     % predict values for given t values
@@ -9,8 +10,8 @@ function L = SIRSquareError(x0, beta, gamma, T, t_data, x_data)
     parfor i=1:length(t_data)
 %         i
         % d is a row vector
-        d = x_data(i, 2) - x_predict(i, 2);
-        L = L + d * d' / 2;
+        d = x_data(i, 1) - x_predict(i, 1);
+        L = L + d * d';
     end
 %     disp(num2str(beta))
 %     disp(num2str(L))

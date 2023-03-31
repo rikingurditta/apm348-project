@@ -1,5 +1,6 @@
 function g = FiniteDiffGradient(f, x)
-%FINITEDIFFGRADIENT use finite differences to find gradient of f
+%FINITEDIFFGRADIENT
+%   use finite differences to find gradient of f
     h = 0.000000001;
     n = size(x);
     g = zeros(n);

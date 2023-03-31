@@ -1,8 +1,7 @@
 function [t, x] = SIR(x0, beta, gamma, T)
-%SIR standard SIR model simulation
-%   params = [beta, gamma]
-    % TODO: make this a global variable or take in argument
-    opts = odeset('RelTol', 1e-2, 'AbsTol', 1e-2);
+%SIR
+%   standard SIR model simulation
+    opts = odeset('RelTol', 1e-2, 'AbsTol', 1e-1);
     [t, x] = ode15s(@(t, x) SIR_rhs(t, x, beta, gamma), T, x0, opts);
 end
 

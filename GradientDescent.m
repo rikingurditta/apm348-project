@@ -1,5 +1,6 @@
 function x = GradientDescent(f, x0, step_size, iterations)
-%GRADIENTDESCENT use FiniteDiffGradient to perform gradient descent on f
+%GRADIENTDESCENT
+%   use FiniteDiffGradient to perform gradient descent on f
     % start at initial guess
     x = x0(:);
     for i=1:iterations
