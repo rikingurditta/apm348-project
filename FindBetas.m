@@ -9,6 +9,8 @@ function betas = FindBetas(t_data, x_data, gamma, beta0)
         tcurr = t_data(i);
         T_sim = linspace(tprev, tcurr, 2);
         f = @(beta) SIRSquareError(xprev, beta, gamma, T_sim, tcurr, x_data(i,:));
+%         disp([f(40), f(50), f(60)])
+%         sol = GradientDescent(f, beta0, 0.01, 10)
         sol = fminsearch(f, beta0);
         betas(i-1) = sol;
     end

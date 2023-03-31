@@ -4,8 +4,9 @@ close all;
 %% parameters
 % factor to modify time in simulation
 T_FACTOR = 1;
+% T_FACTOR = 1e-5;
 % recovery/death rate
-GAMMA = 0.3 / T_FACTOR;
+GAMMA = 1 / 30 / T_FACTOR;
 % how many times to repeat beta finding procedure
 NUM_PERTURBATIONS = 1;
 
@@ -21,25 +22,29 @@ all_data.Deaths_New_Methodology(isnan(all_data.Deaths_New_Methodology)) = 0;
 all_data.Deaths = all_data.Deaths + all_data.Deaths_New_Methodology;
 all_data = removevars(all_data, "Deaths_New_Methodology");
 all_data = all_data(3:end, :);
-all_data = all_data(100:500, :);
+all_data = all_data(600:900, :);
 
 t_data = (all_data.ReportedDate - all_data.ReportedDate(1)) * T_FACTOR;
 I_data = all_data.ConfirmedPositive;
 R_data = all_data.Resolved + all_data.Deaths;
 S_data = 14.57e6 - I_data - R_data;
+% S_data = 2e6 - I_data - R_data;
 x_data = [S_data, I_data, R_data];
 
-%% find betas and simulate
+%% find betas
 % initial guess for parameters
-beta0 = 40;
+beta0 = 1e-7;
 betas = zeros(size(t_data));
 
 for i=1:NUM_PERTURBATIONS
-    betas = betas + FindBetas(t_data, x_data, GAMMA, beta0) / NUM_PERTURBATIONS;
+    i
+%     x_perturbed = x_data + rand(size(x_data)) * 1000;
+    x_perturbed = x_data;
+    betas = betas + FindBetas(t_data, x_perturbed, GAMMA, beta0) / NUM_PERTURBATIONS;
 end
 betas = betas / T_FACTOR;
 
-% simulate with discovered betas
+%% simulate with discovered betas
 [~, x_betas] = SIRBetas(x_data(1, :)', t_data, betas, GAMMA, t_data);
 
 %% plot
