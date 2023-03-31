@@ -32,7 +32,7 @@ x_data = [S_data, I_data, R_data];
 %% find betas and simulate
 % initial guess for parameters
 beta0 = 40;
-betas = zeros(length(t_data));
+betas = zeros(size(t_data));
 
 for i=1:NUM_PERTURBATIONS
     betas = betas + FindBetas(t_data, x_data, GAMMA, beta0) / NUM_PERTURBATIONS;

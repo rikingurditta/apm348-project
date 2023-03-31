@@ -6,7 +6,6 @@ function [t, x] = SIR(x0, beta, gamma, T)
 end
 
 function dxdt = SIR_rhs(t, x, beta, gamma)
-%     disp(t)
     S = x(1); I = x(2); R = x(3);
     
     dxdt = [ -beta * S * I;             ... dS/dt
