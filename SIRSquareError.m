@@ -10,10 +10,9 @@ function L = SIRSquareError(x0, beta, gamma, T, t_data, x_data)
     parfor i=1:length(t_data)
 %         i
         % d is a row vector
-        d = x_data(i, :) - x_predict(i, :);
+        d = x_data(i, 1) - x_predict(i, 1);
         L = L + d * d';
     end
 %     disp(num2str(beta))
 %     disp(num2str(L))
 end
-

@@ -9,7 +9,7 @@ function dxdt = SIR_betas_rhs(t, x, t_betas, betas, gamma)
     S = x(1); I = x(2); R = x(3);
 
     % find beta for current t
-    beta = interp1(t_betas, betas, t);
+    beta = interp1(t_betas, betas, t, 'previous');
     
     dxdt = [ -beta * S * I;             ... dS/dt
               beta * S * I - gamma * I; ... dI/dt
