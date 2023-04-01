@@ -38,7 +38,7 @@ x_data = [S_data, I_data, R_data];
 % initial guess for parameters
 beta0 = 1e-7;
 
-[betas, grads] = FindBetas(t_data, x_data, GAMMA, beta0);
+[betas, grad_x, d_gamma] = FindBetas(t_data, x_data, GAMMA, beta0);
 betas = smoothdata(betas);
 betas = smoothdata(betas);
 
@@ -96,7 +96,7 @@ plot(dates, betas, '-k')
 % plot(dates_week, betas, '-k')
 
 subplot(3, 1, 2)
-plot(dates, diag(x_data * grads') / betas, '-k')
+plot(dates, d_gamma * GAMMA / betas, '-k')
 
 subplot(3, 1, 3)
 p = plot(dates, x_data(:, 2), '-k', dates, x_betas(:, 2), '-k');
