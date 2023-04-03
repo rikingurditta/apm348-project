@@ -1,7 +1,6 @@
-function g = FiniteDiffGradient(f, x)
+function g = FiniteDiffGradient(f, x, h)
 %FINITEDIFFGRADIENT
 %   use finite differences to find gradient of f
-    h = 0.0000001;
     n = size(x);
     g = zeros(n);
     % for each i, get i'th partial derivative
