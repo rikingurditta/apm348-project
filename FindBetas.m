@@ -21,7 +21,6 @@ function [betas, grad_x, d_gamma] = FindBetas(t_data, x_data, gamma, beta0)
         grad_x(i-1, :) = FiniteDiffGradient(beta_of_x1, xcurr, h);
         beta_of_gamma = @(y) fminsearch(@(beta) SIRSquareError(xprev, beta, y, T_sim, tcurr, xcurr), beta0);
         d_gamma(i-1) = FiniteDiffGradient(beta_of_gamma, gamma, h);
-%         disp([beta_of_gamma(gamma + h) beta_of_gamma(gamma - h)])
     end
     fprintf('\n')
 end

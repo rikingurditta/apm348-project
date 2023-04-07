@@ -1,7 +1,7 @@
 function [t, x] = SIRBetas(x0, t_betas, betas, gamma, T)
 %SIR
 %   SIR model simulation with evolving beta values
-    opts = odeset('RelTol', 1e-2, 'AbsTol', 1e-1);
+    opts = odeset('RelTol', 1e-2, 'AbsTol', 1e-0);
     [t, x] = ode15s(@(t, x) SIR_betas_rhs(t, x, t_betas, betas, gamma), T, x0, opts);
 end
 
